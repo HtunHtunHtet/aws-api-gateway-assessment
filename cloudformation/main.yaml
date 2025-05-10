@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: API Gateway with Cognito Authentication and Two Lambda Integration
+
+Parameters:
+  OpenWeatherApiKey:
+    Type: String
+    Description: API key for OpenWeatherMap
+
+Resources:
+
+  ### Cognito User Pool and Client ###
+  CognitoUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: MyUserPool
+      AutoVerifiedAttributes:
+        - email
+      UsernameAttributes:
+        - email
+
+  CognitoUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: MyUserPoolClient
+      UserPoolId: !Ref CognitoUserPool
+      GenerateSecret: false
