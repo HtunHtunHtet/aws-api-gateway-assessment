@@ -24,3 +24,48 @@ Resources:
       ClientName: MyUserPoolClient
       UserPoolId: !Ref CognitoUserPool
       GenerateSecret: false
+
+
+  ### IAM Roles For Lambda Function ###
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LambdaExecutionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: '*'
+              - Effect: Allow
+                Action:
+                  - secretsmanager:GetSecretValue
+                  - ssm:GetParameter
+                Resource: '*'
+
+  ### Lambdas ###
+
+  Lambda1:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: WeatherLambda
+      Handler: index.handler
+      Runtime: nodejs18.x
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Code:
+        S3Bucket: my-api-assessment-bucket
+        S3Key: lambda1.zip
+      Environment:
+        Variables:
+          OPENWEATHER_API_KEY: !Ref OpenWeatherApiKey
