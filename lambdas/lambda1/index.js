@@ -1,7 +1,7 @@
-import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 
-export const handler = async (event) => {
-    const city = 'London';
+exports.handler = async (event) => {
+    const city = event.queryStringParameters?.city || 'London';
     const apiKey = process.env.OPENWEATHER_API_KEY;
 
     try {
@@ -10,12 +10,15 @@ export const handler = async (event) => {
 
         return {
             statusCode: 200,
-            body: JSON.stringify({ temperature: data.main.temp, weather: data.weather[0].description })
+            body: JSON.stringify({
+                temperature: data.main.temp,
+                weather: data.weather[0].description
+            }),
         };
     } catch (err) {
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Failed to fetch weather data', details: err.message })
+            body: JSON.stringify({ error: err.message }),
         };
     }
 };

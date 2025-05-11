@@ -2,6 +2,8 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: API Gateway with Cognito Authentication and Two Lambda Integration
 
 Parameters:
+
+  # API Key for OpenWeather #
   OpenWeatherApiKey:
     Type: String
     Description: API key for OpenWeatherMap
@@ -56,6 +58,7 @@ Resources:
 
   ### Lambdas ###
 
+  # First lambda #
   Lambda1:
     Type: AWS::Lambda::Function
     Properties:
@@ -64,8 +67,20 @@ Resources:
       Runtime: nodejs18.x
       Role: !GetAtt LambdaExecutionRole.Arn
       Code:
-        S3Bucket: my-api-assessment-bucket
+        S3Bucket: my-api-assessment-bucket # Change to your bucket name
         S3Key: lambda1.zip
       Environment:
         Variables:
           OPENWEATHER_API_KEY: !Ref OpenWeatherApiKey
+
+  # Second Lambda #
+  Lambda2:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: ExchangeLambda
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.11
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Code:
+        S3Bucket: my-api-assessment-bucket # Change to your bucket name
+        S3Key: lambda2.zip
