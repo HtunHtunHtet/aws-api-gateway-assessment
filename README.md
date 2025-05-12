@@ -125,6 +125,8 @@ aws cognito-idp admin-set-user-password \
   --permanent
 ```
 
+Note: replace `<USER_POOL_ID>` with the user pool id from [step 1](#1-get-user-pool-id-from-below-command)
+
 ### 3. Get Client ID
 
 ```
@@ -217,7 +219,7 @@ Expected result
 ### 3. Call Exchange Rate API
 
 ```
-url -H "Authorization: <ID_TOKEN>" \
+curl -H "Authorization: <ID_TOKEN>" \
   "https://<api-id>.execute-api.<region>.amazonaws.com/prod/exchange?base={your_base_currency}&target={your_target_currency}"
 ```
 
@@ -228,7 +230,7 @@ url -H "Authorization: <ID_TOKEN>" \
 For example : it is going to be something like below
 
 ```
-curl -H "Authorization: <ID_TOKEN>” \
+curl -H "Authorization: <ID_TOKEN>" \
   "https://on5fx53pjd.execute-api.us-east-1.amazonaws.com/prod/exchange?base=CAD&target=SGD"
 ```
 
