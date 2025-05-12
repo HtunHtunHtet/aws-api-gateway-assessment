@@ -211,8 +211,7 @@ url -H "Authorization: <ID_TOKEN>" \
 
 ```
 curl -H "Authorization: <ID_TOKEN>” \
-  "https://on5fx53pjd.execute-api.us-east-1.amazonaws.com/prod/exchange?base=CAD&target=SGD
-  "
+  "https://on5fx53pjd.execute-api.us-east-1.amazonaws.com/prod/exchange?base=CAD&target=SGD"
 ```
 
 Expected Result
