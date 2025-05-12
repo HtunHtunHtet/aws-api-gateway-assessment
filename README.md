@@ -16,6 +16,18 @@ This project implement an AWS infrastructure using CloudFormation to provision:
     </li>
 </ol>
 
+## Table Of Contents
+
+- [Architecture Overview](#architecture-overview)
+- [Repository Structure](#repository-structure)
+- [Repository Structure](#repository-structure)
+- [Notes](#notes)
+- [Cloning Repository](#clone-this-repository)
+- [Deployment Instructions](#deployment-instructions)
+- [Cognito Setup](#cognito-setup)
+- [API Testing](#api-testing)
+- [Lambda Sample Payloads](#lambda-sample-payloads)
+
 ## Architecture Overview
 
 ```
@@ -39,8 +51,11 @@ Client → API Gateway (secured with Cognito)
 │       └── lambda_function.py
 │   └── lambda1.zip // pre-zipped for easier deployment
 │   └── lambda2.zip // pre-zipped for easier deployment
+├── assets
+│   ├── sc1.png
+│   ├── sc2.png
+│   ├── sc3.png
 ```
-
 ## Notes
 - This assessment uses AWS Free Tier.
 - Lambda1 uses node-fetch, Lambda2 uses urllib.request
@@ -128,11 +143,11 @@ So perform below steps to enable the auth flow:
 - Click your User Pool (i.e `MyUserPool`)
 - Go to the `App clients` tab 
 - Click your App Client
-![sc1.png](Assets%2Fsc1.png)
+![sc1.png](assets%2Fsc1.png)
 - Go to `Edit`
-![sc2.png](Assets%2Fsc2.png)
+![sc2.png](assets%2Fsc2.png)
 - Enable "Sign in with username and password: ALLOW_USER_PASSWORD_AUTH"
-![sc3.png](Assets%2Fsc3.png)
+![sc3.png](assets%2Fsc3.png)
 - Save Change
 
 ### 5. Get JWT ID Token
