@@ -202,7 +202,7 @@ Expected result
 
 ```
 url -H "Authorization: <ID_TOKEN>" \
-  "https://<api-id>.execute-api.<region>.amazonaws.com/prod/exchange"
+  "https://<api-id>.execute-api.<region>.amazonaws.com/prod/exchange?base={your_base_currency}&target={your_target_currency}"
 ```
 
 - Update your ID_TOKEN form [Cognito Setup , step 5](#5-get-jwt-id-token),
@@ -211,11 +211,12 @@ url -H "Authorization: <ID_TOKEN>" \
 
 ```
 curl -H "Authorization: <ID_TOKEN>” \
-  "https://on5fx53pjd.execute-api.us-east-1.amazonaws.com/prod/exchange"
+  "https://on5fx53pjd.execute-api.us-east-1.amazonaws.com/prod/exchange?base=CAD&target=SGD
+  "
 ```
 
 Expected Result
 
 ```json
-{"base": "USD", "target": "EUR", "rate": 0.889955}
+{"base": "CAD", "target": "SGD", "rate": 0.933697}
 ```
