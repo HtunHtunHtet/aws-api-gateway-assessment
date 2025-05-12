@@ -64,7 +64,7 @@ Client → API Gateway (secured with Cognito)
 ## Clone This repository
 
 ```
-git clone https://github.com/your-username/aws-api-gateway-assessment.git
+git clone https://github.com/HtunHtunHtet/aws-api-gateway-assessment.git
 cd aws-api-gateway-assessment
 ```
 
