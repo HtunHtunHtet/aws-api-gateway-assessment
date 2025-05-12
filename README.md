@@ -250,6 +250,8 @@ Expected Result
   }
 }
 ```
+
+### Lambda2(`/exchange`)
 ```json
 {
   "queryStringParameters": {
