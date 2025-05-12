@@ -16,7 +16,7 @@ This project implement an AWS infrastructure using CloudFormation to provision:
     </li>
 </ol>
 
-## 📐 Architecture Overview
+## Architecture Overview
 
 ```
 Client → API Gateway (secured with Cognito)
@@ -28,7 +28,7 @@ Client → API Gateway (secured with Cognito)
     <li>Lambda2 calls open.er-api.com to fetch exchange rates </li>
 </ul>
 
-📦 Repository Structure
+## Repository Structure
 ```
 /aws-api-gateway-assessment
 ├── README.md
@@ -43,12 +43,12 @@ Client → API Gateway (secured with Cognito)
 │   └── lambda2.zip // pre-zipped for easier deployment
 ```
 
-## 📝 Notes
+## Notes
 - This assessment uses AWS Free Tier.
 - Lambda1 uses node-fetch, Lambda2 uses urllib.request
 - Cognito authentication required for both endpoints
 
-## 🚀 Deployment Instructions
+## Deployment Instructions
 ### Pre-requisites
 
 - AWS CLI installed and configured
@@ -82,7 +82,7 @@ aws cloudformation deploy \
 
 NOTE: Remember to change `YOUR_OPENWEATHER_API_KEY` to your own open weather API key. Get your api key [here](https://openweathermap.org/api).
 
-## 👤 Cognito Setup
+## Cognito Setup
 ### 1. Get User Pool Id from below command
 ```
 aws cognito-idp list-user-pools --max-results 10
@@ -156,7 +156,7 @@ Expected return result
 }
 ```
 
-## 🌐 API Testing
+## API Testing
 
 
 ### 1. Get your API gateway id

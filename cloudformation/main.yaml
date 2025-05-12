@@ -27,7 +27,6 @@ Resources:
       UserPoolId: !Ref CognitoUserPool
       GenerateSecret: false
 
-
   ### IAM Roles For Lambda Function ###
   LambdaExecutionRole:
     Type: AWS::IAM::Role
