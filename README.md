@@ -28,6 +28,25 @@ Client → API Gateway (secured with Cognito)
     <li>Lambda2 calls open.er-api.com to fetch exchange rates </li>
 </ul>
 
+📦 Repository Structure
+```
+/aws-api-gateway-assessment
+├── README.md
+├── cloudformation
+│   └── main.yaml
+├── lambdas
+│   ├── lambda1
+│   │   └── index.js
+│   └── lambda2
+│       └── lambda_function.py
+│   └── lambda1.zip // pre-zipped for easier deployment
+│   └── lambda2.zip // pre-zipped for easier deployment
+```
+
+## 📝 Notes
+- This assessment uses AWS Free Tier.
+- Lambda1 uses node-fetch, Lambda2 uses urllib.request
+- Cognito authentication required for both endpoints
 
 ## 🚀 Deployment Instructions
 ### Pre-requisites
