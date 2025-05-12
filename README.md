@@ -221,3 +221,22 @@ Expected Result
 ```json
 {"base": "CAD", "target": "SGD", "rate": 0.933697}
 ```
+
+## Lambda Sample Payloads
+### Lambda1 (`/weather`)
+
+```json
+{
+  "queryStringParameters": {
+    "city": "London"
+  }
+}
+```
+```json
+{
+  "queryStringParameters": {
+    "base": "USD",
+    "target": "EUR"
+  }
+}
+```
