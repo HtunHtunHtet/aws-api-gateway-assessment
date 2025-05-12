@@ -126,8 +126,6 @@ Resources:
         IntegrationHttpMethod: POST
         Type: AWS_PROXY
         Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Lambda1.Arn}/invocations
-      MethodResponses:
-        - StatusCode: 200
 
   ExchangeMethod:
     Type: AWS::ApiGateway::Method
@@ -141,8 +139,6 @@ Resources:
         IntegrationHttpMethod: POST
         Type: AWS_PROXY
         Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Lambda2.Arn}/invocations
-      MethodResponses:
-        - StatusCode: 200
 
   Lambda1InvokePermission:
     Type: AWS::Lambda::Permission
@@ -167,7 +163,18 @@ Resources:
       - ExchangeMethod
     Properties:
       RestApiId: !Ref ApiGatewayRestApi
+
+  ApiGatewayStage:
+    Type: AWS::ApiGateway::Stage
+    Properties:
       StageName: prod
+      DeploymentId: !Ref ApiGatewayDeployment
+      RestApiId: !Ref ApiGatewayRestApi
+      MethodSettings:
+        - ResourcePath: "/*"
+          HttpMethod: "*"
+          CachingEnabled: true
+          CacheTtlInSeconds: 60
 
 Outputs:
   ApiBaseUrl:

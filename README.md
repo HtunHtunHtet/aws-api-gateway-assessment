@@ -60,6 +60,7 @@ Client → API Gateway (secured with Cognito)
 - This assessment uses AWS Free Tier.
 - Lambda1 uses node-fetch, Lambda2 uses urllib.request
 - Cognito authentication required for both endpoints
+- Enabled API Gateway caching for `/weather` and `/exchange` endpoints for 60 seconds to improve performance and reduce API calls to public services. 
 
 ## Clone This repository
 
