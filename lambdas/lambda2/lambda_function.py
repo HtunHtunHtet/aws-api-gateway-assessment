@@ -2,29 +2,29 @@ import json
 import urllib.request
 
 def lambda_handler(event, context):
-    url = "https://open.er-api.com/v6/latest/USD"
+    params = event.get("queryStringParameters", {}) or {}
+    base = params.get("base", "USD")
+    target = params.get("target", "EUR")
+
+    url = f"https://open.er-api.com/v6/latest/{base}"
 
     try:
         with urllib.request.urlopen(url) as response:
             body = response.read()
             data = json.loads(body.decode())
 
-            # Extract exchange rate to EUR (or fallback to Not found)
-            eur_rate = data.get("rates", {}).get("EUR", "Not found")
+            rate = data.get("rates", {}).get(target, "Not found")
 
             return {
                 "statusCode": 200,
                 "body": json.dumps({
-                    "base": "USD",
-                    "target": "EUR",
-                    "rate": eur_rate
+                    "base": base,
+                    "target": target,
+                    "rate": rate
                 })
             }
-
     except Exception as e:
         return {
             "statusCode": 500,
-            "body": json.dumps({
-                "error": str(e)
-            })
+            "body": json.dumps({"error": str(e)})
         }

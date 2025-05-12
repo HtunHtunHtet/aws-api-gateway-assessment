@@ -23,10 +23,8 @@ Client → API Gateway (secured with Cognito)
 ├── /weather → Lambda1 (Node.js, OpenWeather API)
 └── /exchange → Lambda2 (Python, ExchangeRate API)
 ```
-<ul>
-    <li>Lambda1 calls OpenWeatherMap to fetch weather info for a given city</li>
-    <li>Lambda2 calls open.er-api.com to fetch exchange rates </li>
-</ul>
+- Lambda1 calls OpenWeatherMap to fetch weather info for a given city
+- Lambda2 calls [open.er-api.com](https://open.er-api.com/v6/latest/USD) to fetch exchange rates
 
 ## Repository Structure
 ```
@@ -47,6 +45,13 @@ Client → API Gateway (secured with Cognito)
 - This assessment uses AWS Free Tier.
 - Lambda1 uses node-fetch, Lambda2 uses urllib.request
 - Cognito authentication required for both endpoints
+
+## Clone This repository
+
+```
+git clone https://github.com/your-username/aws-api-gateway-assessment.git
+cd aws-api-gateway-assessment
+```
 
 ## Deployment Instructions
 ### Pre-requisites
@@ -139,7 +144,9 @@ aws cognito-idp initiate-auth \
   --auth-parameters USERNAME=test@test.com,PASSWORD=YourSecurePassword123!
 ```
 
-NOTE: Change `<CLIENT_ID>` with the ID that you get from step 3.
+NOTE: 
+- Change `<CLIENT_ID>` with the ID that you get from step 3.
+- Don't forget to perform [Step 4 above](#4-update-the-app-client-to-enable-the-auth-flow) before this step
 
 Expected return result 
 
@@ -151,7 +158,7 @@ Expected return result
         "ExpiresIn": 3600,
         "TokenType": "Bearer",
         "RefreshToken": "",
-        "IdToken": "" <------------- This is our JWT ID token 
+        "IdToken": "" //  This is our JWT ID token 
     }
 }
 ```
@@ -171,14 +178,15 @@ aws apigateway get-rest-apis \
 
 ```
 curl -H "Authorization: <ID_TOKEN>" \
-  "https://<api-id>.execute-api.<region>.amazonaws.com/prod/weather?city=London"
+  "https://<api-gateway-id>.execute-api.<region>.amazonaws.com/prod/weather?city=London"
 ```
 
-- Update your ID_TOKEN form [Cognito Setup , step 5](#5-get-jwt-id-token),
-- Get your API gateway id [from above step](#1-get-your-api-gateway-id)
+- Update your `<ID_TOKEN>` form [Cognito Setup , step 5](#5-get-jwt-id-token),
+- Get your API gateway id [from above step](#1-get-your-api-gateway-id) and update it in `<api-gateway-id>`
+- Update <region> with your region that cloud formation is deployed
 - run it.
 
-For example it is going to be something like below
+For example : it is going to be something like below
 
 ```
 curl -H "Authorization: <ID_TOKEN>" \
