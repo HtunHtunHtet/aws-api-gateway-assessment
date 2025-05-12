@@ -209,6 +209,8 @@ url -H "Authorization: <ID_TOKEN>" \
 - Get your API gateway id [from above step](#1-get-your-api-gateway-id)
 - run it.
 
+For example : it is going to be something like below
+
 ```
 curl -H "Authorization: <ID_TOKEN>” \
   "https://on5fx53pjd.execute-api.us-east-1.amazonaws.com/prod/exchange?base=CAD&target=SGD"
